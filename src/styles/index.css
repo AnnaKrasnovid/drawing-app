@@ -1,0 +1,14 @@
+.hello {
+  padding: 50px;
+  display: flex;
+}
+.hello__title {
+  color: red;
+}
+
+.hello {
+  padding: 100px;
+}
+.hello__title {
+  color: yellow;
+}/*# sourceMappingURL=index.css.map */
