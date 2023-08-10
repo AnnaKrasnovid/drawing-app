@@ -14,3 +14,12 @@ export function hexToRgb(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
+
+export function saveCanvas(canvas) {
+    let downloadLink = document.createElement('a');
+    downloadLink.setAttribute('download', 'Image.png');
+    let dataURL = canvas.toDataURL('image/png');
+    let url = dataURL.replace(/^data:image\/png/, 'data:application/octet-stream');
+    downloadLink.setAttribute('href', url);
+    downloadLink.click();
+}
