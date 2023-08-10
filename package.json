@@ -20,7 +20,9 @@
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
     "postcss-loader": "^7.0.2",
-    "webpack": "^5.75.0",
+    "sass": "^1.64.2",
+    "sass-loader": "^13.3.2",
+    "webpack": "^5.88.2",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"
   },
