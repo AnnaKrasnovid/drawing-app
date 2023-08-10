@@ -29,6 +29,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "core-js": "^3.26.1",
-    "node-sass": "^8.0.0"
+    "node-sass": "^8.0.0",
+    "normalize.css": "^8.0.1"
   }
 }

@@ -51,13 +51,15 @@ button {
 
 body {    
     //шрифт для всей страницы 
-    // font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Montserrat', Arial, sans-serif;
     // color: var(--color);
     font-size: 14px;
     margin: 0 auto;
     // 2 свойства ниже, делают шрифт тоньше на сафари и мозиле(там шрифт жирнее обычного)
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;    
+    -moz-osx-font-smoothing: grayscale;   
+    
+    
 }
 
 .page {

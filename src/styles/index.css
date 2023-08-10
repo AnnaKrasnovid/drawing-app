@@ -49,6 +49,7 @@ button {
 }
 
 body {
+  font-family: "Montserrat", Arial, sans-serif;
   font-size: 14px;
   margin: 0 auto;
   -webkit-font-smoothing: antialiased;
@@ -97,13 +98,14 @@ body {
 
 .app-draw {
   display: grid;
-  grid-template-columns: 0.2fr 0.8fr;
+  grid-template-columns: 0.3fr 0.7fr;
   column-gap: calc(var(--index) * 0.9);
   height: 100%;
+  padding: calc(var(--index) * 2) 0;
 }
 
 .tools {
-  padding: 15px;
+  padding: 30px 15px 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -112,7 +114,7 @@ body {
 .tools__container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: calc(var(--index) * 2);
 }
 .tools__buttons {
   display: flex;
@@ -124,16 +126,22 @@ body {
 .tools__inputs {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: calc(var(--index) * 1.1);
 }
 .tools__tools {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--index) * 0.8);
 }
 .tools__setting {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.tools__wrapper {
+  display: flex;
+  gap: calc(var(--index) * 0.8);
 }
 
 .button {
@@ -146,10 +154,10 @@ body {
   justify-content: center;
 }
 .button_active {
-  background-color: rgb(163, 223, 178);
+  border: 2px solid rgb(163, 223, 178);
 }
-.button:hover {
-  background-color: rgb(163, 223, 178);
+.button:hover, .button:active {
+  border: 2px solid rgb(163, 223, 178);
 }
 .button svg {
   width: 24px;
@@ -171,4 +179,46 @@ body {
 
 .canvas {
   width: 100%;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--index) * 0.3);
+}
+.input-box__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.input-box__label {
+  font-size: 16px;
+  font-weight: 500;
+}
+.input-box__option {
+  font-size: 14px;
+  font-weight: 500;
+}
+.input-color {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Reg.woff2") format("woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Med.woff2") format("woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Bold.woff2") format("woff2");
+  font-weight: 700;
 }/*# sourceMappingURL=index.css.map */
