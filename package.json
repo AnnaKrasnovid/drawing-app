@@ -1,12 +1,12 @@
 {
-  "name": "test-webpack",
+  "name": "drawing-application",
   "version": "1.0.0",
-  "description": "",
+  "description": "Drawing application",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve",
-    "predeploy": "npm run dist",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "author": "",
