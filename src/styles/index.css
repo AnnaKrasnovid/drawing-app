@@ -71,8 +71,6 @@ body {
 
 .main-container {
   flex: 1 0 auto;
-  background-color: var(--background-color);
-  max-width: 90%;
   width: 100%;
   margin: 0 auto;
 }
@@ -81,7 +79,6 @@ body {
   /* text-align: center; */
   background-color: #F5F5F5;
   height: 100vh;
-  width: 100vw;
   box-sizing: border-box;
 }
 
@@ -101,7 +98,7 @@ body {
 }
 
 .indent-section {
-  padding-left: calc(var(--index) * 1.2);
+  padding-left: calc(var(--index) * 1.5);
   padding-right: calc(var(--index) * 1.5);
 }
 
@@ -169,27 +166,27 @@ body {
   border: 1px solid #F5F5F5;
 }
 .button_tool:hover {
-  border: 2px solid #27AE60;
+  border: 1px solid #27AE60;
 }
 .button svg {
   width: 24px;
   height: 24px;
 }
 .button_active {
-  border: 2px solid #27AE60;
+  border: 1px solid #27AE60;
 }
 .button_active path {
   fill: #393534;
 }
 .button_type_redo {
   transform: scale(-1, 1);
-  border: 1px solid #F5F5F5;
+  border: 1px solid #9A9A9A;
 }
 .button_type_redo path {
   fill: #9A9A9A;
 }
 .button_type_undo {
-  border: 1px solid #F5F5F5;
+  border: 1px solid #9A9A9A;
 }
 .button_type_undo path {
   fill: #9A9A9A;
@@ -215,6 +212,29 @@ body {
   background: linear-gradient(180deg, #55AFE2 0%, #309EDC 100%);
 }
 
+.button-save {
+  opacity: 0.3;
+  cursor: auto;
+}
+.button-save_active {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.button-action {
+  cursor: auto;
+}
+.button-action_active {
+  cursor: pointer;
+  border-color: #27AE60;
+}
+.button-action_active path {
+  fill: #27AE60;
+}
+.button-action_active:hover, .button-action_active:active {
+  border-color: #27AE60;
+}
+
 .image {
   overflow: hidden;
 }
@@ -227,6 +247,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: calc(var(--index) * 0.3);
+  box-shadow: 5px 18px 40px 5px rgba(154, 154, 154, 0.2);
+  padding: calc(var(--index) * 0.8);
 }
 .input-box__wrapper {
   display: flex;
@@ -239,10 +261,11 @@ body {
   font-weight: 500;
 }
 .input-box__option {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 }
-.input-box .input-range, .input-box .input-color {
+.input-box .input-range,
+.input-box .input-color {
   cursor: pointer;
 }
 
@@ -256,7 +279,7 @@ body {
 
 input[type=range] {
   -webkit-appearance: none;
-  background-color: #B0D3BF;
+  background-color: #a3d2ee;
   width: 100%;
   height: 8px;
   border-radius: 3px;
@@ -264,14 +287,14 @@ input[type=range] {
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  background-color: #27AE60;
+  background-color: #55AFE2;
   opacity: 1;
   width: 26px;
   height: 14px;
   border-radius: 7px;
 }
 input[type=range]::-webkit-slider-thumb:active {
-  background-color: #04863a;
+  background-color: #1993da;
 }
 
 @font-face {

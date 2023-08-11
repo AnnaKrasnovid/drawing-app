@@ -16,15 +16,18 @@ let mousePositionY = 0;
 let tool = 'brash';
 let weightLine = 10;
 let opasityLine = 100;
-let colorLine = '#000000';
-let colorRGBA = `rgba(0,0,0, ${opasityLine})`;
+let colorLine = '#27AE60';
+let colorRGBA = `rgba(39,174,96, ${opasityLine})`;
 let step = 0;
 let bgCanvas = '#ffffff';
 
 textColor.textContent = colorLine;
-textOpasity.textContent = opasityLine + '%';
-textWeight.textContent = weightLine + 'px';
+textOpasity.textContent = opasityLine + ' %';
+textWeight.textContent = weightLine + ' px';
 canvas.style.background = bgCanvas;
+inputColor.setAttribute("value", colorLine);
+inputOpasity.setAttribute("value", opasityLine);
+inputWeight.setAttribute("value", weightLine);
 
 const heightCanvas = () => drawingSheet.offsetHeight;
 const widthCanvas = () => drawingSheet.offsetWidth;
@@ -52,8 +55,8 @@ function finishedPosition() {
     lines.push(line);
     line = [];
     step = lines.length;
-
-    // if(step)
+    toggleActiveClassButtonSave();
+    toggleActiveClassButtonUndo();
 }
 
 function drawLine(x, y, weight, color) {
@@ -69,7 +72,7 @@ function drawLine(x, y, weight, color) {
 
 function draw(e) {
     if (!painting) {
-        return
+        return;
     }
 
     lines = lines.slice(0, step)
@@ -78,8 +81,8 @@ function draw(e) {
     let colorTools = (tool === 'brash') ? colorRGBA : bgCanvas;
     drawLine(mousePositionX, mousePositionY, weightLine, colorTools);
     line.push({ x: mousePositionX, y: mousePositionY, weight: weightLine, color: colorTools });
-    // если при нажатой мыши курсов вышел за пределы canvas, то рисование сбрасываем
 
+    // если при нажатой мыши курсов вышел за пределы canvas, то рисование сбрасываем
     if (mousePositionX + 10 > drawingSheet.offsetWidth || mousePositionX <= 0 || mousePositionY + 10 > drawingSheet.offsetHeight || mousePositionY < 10) {
         painting = false;
     }
@@ -131,8 +134,11 @@ function goBackStep() {
     if (step === 0) {
         return;
     }
+
     step = step - 1;
     renderLine();
+    toggleActiveClassButtonUndo();
+    toggleActiveClassButtonRedo();
 }
 
 function goForwardStep() {
@@ -141,6 +147,8 @@ function goForwardStep() {
     }
     step = step + 1;
     renderLine();
+    toggleActiveClassButtonRedo();
+    toggleActiveClassButtonUndo();
 }
 
 function toggleActiveClassButtons(e) {
@@ -148,22 +156,53 @@ function toggleActiveClassButtons(e) {
         if (i.classList.contains('button_active')) {
             removeActiveClassButton(i, 'button_active');
         }
-        addActiveClassButton(e.currentTarget, 'button_active')
+        addActiveClassButton(e.currentTarget, 'button_active');
     })
 }
+function toggleActiveClassButtonSave() {
+    if (lines.length === 0) {
+        removeActiveClassButton(buttonSave, 'button-save_active');
+    } else {
+        addActiveClassButton(buttonSave, 'button-save_active');
+    }
+}
 
+function toggleActiveClassButtonUndo() {
+    if (lines.length > 0 || lines.length === step) {
+        addActiveClassButton(buttonUndo, 'button-action_active');
+    }
+    if (lines.length === 0 || step === 0) {
+        removeActiveClassButton(buttonUndo, 'button-action_active');
+    }
+}
+
+function toggleActiveClassButtonRedo() {
+    if (lines.length > 0 && step < lines.length) {
+        addActiveClassButton(buttonRedo, 'button-action_active');
+    }
+    if (lines.length === step) {
+        removeActiveClassButton(buttonRedo, 'button-action_active');
+    }
+}
 
 function addActiveClassButton(element, className) {
     element.classList.add(className);
 }
 
-function removeActiveClassButton(element) {
+function removeActiveClassButton(element, className) {
     element.classList.remove(className);
 }
 
 function changeTool(e, toolActive) {
     tool = toolActive;
     toggleActiveClassButtons(e);
+    toggleActiveClassButtonUndo();
+}
+
+function saveImage() {
+    if (lines.length !== 0) {
+        saveCanvas(canvas);
+    }
 }
 
 changeSizeCanvas();
@@ -179,40 +218,8 @@ inputOpasity.addEventListener('input', (e) => changeOpasity(e));
 inputWeight.addEventListener('input', (e) => changeWeight(e));
 buttonRedo.addEventListener('click', goForwardStep);
 buttonUndo.addEventListener('click', goBackStep);
-buttonSave.addEventListener('click', () => saveCanvas(canvas));
+buttonSave.addEventListener('click', saveImage);
 eraser.addEventListener('click', (e) => changeTool(e, 'eraser'));
 brash.addEventListener('click', (e) => changeTool(e, 'brash'));
 
 
-// export const inputColor = document.querySelector('.input-color');
-// export const inputOpasity = document.querySelector('.input-range_type_opasity');
-// export const inputWeight = document.querySelector('.input-range_type_weight');
-
-// const slider = document.querySelector(".input-range_type_opasity")
-// const min = inputOpasity.min
-// const max = inputOpasity.max
-// const value = inputOpasity.value
-// const minWeight = inputOpasity.min
-// const maxWeight = inputOpasity.max
-// const valueWeight = inputOpasity.value
-
-// function getOptionsInput() {
-    
-// }
-
-// inputOpasity.style.background = `linear-gradient(to right, #B0D3BF 0%, #B0D3BF ${(value - min) / (max - min) * 100}%, #DEE2E6 ${(value - min) / (max - min) * 100}%, #DEE2E6 100%)`
-// inputWeight.style.background = `linear-gradient(to right, #B0D3BF 0%, #B0D3BF ${(valueWeight - minWeight) / (maxWeight - minWeight) * 100}%, #DEE2E6 ${(valueWeight - minWeight) / (maxWeight - minWeight) * 100}%, #DEE2E6 100%)`
-
-
-
-// function addGradientInput(e) {
-//     const value = e.target.value
-//     inputOpasity.style.background = `linear-gradient(to right, #B0D3BF 0%, #B0D3BF ${(value - min) / (max - min) * 100}%, #DEE2E6 ${(value - min) / (max - min) * 100}%, #DEE2E6 100%)`
-// }
-// function addGradientInput2(e) {
-//     const value = e.target.value
-//     inputWeight.style.background = `linear-gradient(to right, #B0D3BF 0%, #B0D3BF ${(value - min) / (max - min) * 100}%, #DEE2E6 ${(value - min) / (max - min) * 100}%, #DEE2E6 100%)`
-// }
-
-// inputOpasity.addEventListener('input', (e) => addGradientInput(e))
-// inputWeight.addEventListener('input', (e) => addGradientInput2(e))

@@ -17,7 +17,7 @@
                 <div class="box tools">
                     <div class="tools__container">
                         <div class="tools__tools">
-                            <a class=" button button_type_save" id="download">
+                            <a class=" button button_type_save button-save " id="download">
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="612px"
                                     height="612px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;"
@@ -39,7 +39,7 @@
                                 </svg>
                             </a>
                             <div class="tools__wrapper">
-                                <button class=" button button_type_brash button_tool button_active">
+                                <button class=" button button_type_brash button_tool button_active" >
                                     <svg width="24" height="24" id="Capa_1" version="1.1" viewBox="0 0 471 439.5"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -55,8 +55,6 @@
                                     </svg>
                                 </button>
                             </div>
-
-                            
                         </div>
                         <div class="tools__inputs">
                             <!-- <div class="input-box">
@@ -68,41 +66,34 @@
                             </div> -->
                             <div class="input-box">
                                 <div class="input-box__wrapper">
-                                    <label class="input-box__label" for="color">Цвет кисти</label>
+                                    <label class="input-box__label" for="color">Цвет</label>
                                     <p class="input-box__option input-box__option_type_color"></p>
                                 </div>
                                 <input class="input input-color" type="color" id="color" />
-                                
+
                             </div>
                             <div class="input-box">
                                 <div class="input-box__wrapper">
-                                    <label class="input-box__label" for="opasity">Прозрачность кисти</label>
+                                    <label class="input-box__label" for="opasity">Прозрачность</label>
                                     <p class="input-box__option input-box__option_type_opasity"></p>
                                 </div>
                                 <input class="input-range input-range_type_opasity" type="range" min="1" max="100"
-                                    value="100" id="opasity" />
+                                     id="opasity" />
                             </div>
                             <div class="input-box">
                                 <div class="input-box__wrapper">
-                                    <label class="input-box__label" for="weight">Размер кисти</label>
+                                    <label class="input-box__label" for="weight">Размер</label>
                                     <p class="input-box__option input-box__option_type_weight"></p>
                                 </div>
                                 <input class="input-range input-range_type_weight" type="range" min="1" max="100"
-                                    value="10" id="weight" />
-                                   
-                                    
-                            </div>
-                            <!-- <div class="chrome">
-                                <input id="myinput" type="range" min="0" value="25" max="200" />
-                              </div> -->
-                              
+                                     id="weight" />
+                            </div>                           
                         </div>
                     </div>
 
                     <div class="tools__setting">
                         <div class="tools__buttons">
-
-                            <button class="button button_type_undo">
+                            <button class="button button_type_undo button-action ">
                                 <svg className="undo" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fillRule="evenodd" clipRule="evenodd"
@@ -110,7 +101,7 @@
                                         fill="#323232" />
                                 </svg>
                             </button>
-                            <button class="button button_type_redo">
+                            <button class="button button_type_redo button-action ">
                                 <svg className="redo" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fillRule="evenodd" clipRule="evenodd"
@@ -119,7 +110,6 @@
                                 </svg>
                             </button>
                         </div>
-
                         <button class="button button-text button-clear">Очистить лист</button>
                     </div>
                 </div>
@@ -128,9 +118,6 @@
                     <canvas class="canvas" id="canvas"></canvas>
                 </div>
             </div>
-
-
-
         </main>
         <!-- <footer class="indent-section">footer</footer> -->
     </div>
