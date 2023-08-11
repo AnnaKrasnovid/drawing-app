@@ -3,7 +3,7 @@ import 'normalize.css';
 
 import { hexToRgb, saveCanvas } from './utils/functions';
 import {
-    drawingSheet, buttonClear, buttonRedo, buttonUndo, buttonSave, inputColor,
+    drawingSheet, buttonClear, buttonRedo, buttonUndo, buttonSave,optionsList, inputColor,
     inputOpasity, inputWeight, textColor, textOpasity, textWeight, eraser, brash,
     buttonsTools, canvas, context
 } from './utils/constants';
@@ -16,8 +16,8 @@ let mousePositionY = 0;
 let tool = 'brash';
 let weightLine = 10;
 let opasityLine = 100;
-let colorLine = '#27AE60';
-let colorRGBA = `rgba(39,174,96, ${opasityLine})`;
+let colorLine = '#55AFE2';
+let colorRGBA = `rgba(85,175,226, ${opasityLine})`;
 let step = 0;
 let bgCanvas = '#ffffff';
 
@@ -96,6 +96,9 @@ function startOver() {
     context.clearRect(0, 0, widthCanvas(), heightCanvas());
     lines = [];
     line = [];
+    toggleActiveClassButtonRedo();
+    toggleActiveClassButtonUndo();
+    toggleActiveClassButtonSave()
 }
 
 function changeHexToRgba(color) {
@@ -197,11 +200,29 @@ function changeTool(e, toolActive) {
     tool = toolActive;
     toggleActiveClassButtons(e);
     toggleActiveClassButtonUndo();
+    toggleOptions()
 }
 
 function saveImage() {
     if (lines.length !== 0) {
         saveCanvas(canvas);
+    }
+}
+
+
+function toggleOptions() {
+    if(tool==='eraser') {        
+        optionsList.forEach(item => {
+            if(!item.classList.contains('input-box_type_weight')) {
+                addActiveClassButton(item, 'input-box_hide')
+            }
+        })
+    } else {
+        optionsList.forEach(item => {
+            if(!item.classList.contains('input-box_type_weight')) {
+                removeActiveClassButton(item, 'input-box_hide')
+            }
+        })
     }
 }
 

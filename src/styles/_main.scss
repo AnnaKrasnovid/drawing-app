@@ -62,7 +62,7 @@ body {
     // 2 свойства ниже, делают шрифт тоньше на сафари и мозиле(там шрифт жирнее обычного)
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;   
-    
+    overflow: hidden;
     
 }
 
@@ -71,7 +71,7 @@ body {
     display: flex;
     flex-direction: column;
     // margin: 0 auto;
-    min-height: 100vh;
+    max-height: 100vh;
     width: 100%;
     max-width: 1920px;
 }
@@ -85,6 +85,37 @@ body {
     // max-width: 90%;
     width: 100%;
     margin: 0 auto;
+}
+
+.scroll {  
+    overflow: auto;     
+   // padding-right: 10px; //отступ скролла от содержимого слева
+   //два свойства ниже для браузера firefox
+    scrollbar-width: thin;
+    scrollbar-color: #27AE60 #F5F5F5;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 4px; //ширина скролла  
+    height: 4px;    
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background: #27AE60; //цвет  скролла     
+    border-radius: 10px;    
+}
+
+.scroll::-webkit-scrollbar-track {
+    background: #F5F5F5; //цвет бокса скролла    
+    background-clip: content-box;
+    border-radius: 10px;    
+    margin-top: 5px; // отступ вверху скролла от контейнера
+    margin-bottom: 5px; // отступ внизу скролла от контейнера  
+}
+
+.scroll::-webkit-scrollbar-button{
+    padding: 10px;
+    display: none;
 }
 
 

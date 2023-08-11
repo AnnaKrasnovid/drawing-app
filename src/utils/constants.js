@@ -5,6 +5,8 @@ export const buttonRedo = document.querySelector('.button_type_redo');
 export const buttonUndo = document.querySelector('.button_type_undo');
 export const buttonSave = document.querySelector('.button_type_save');
 
+export const optionsList = document.querySelectorAll('.input-box')
+
 export const inputColor = document.querySelector('.input-color');
 export const inputOpasity = document.querySelector('.input-range_type_opasity');
 export const inputWeight = document.querySelector('.input-range_type_weight');
