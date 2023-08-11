@@ -1,0 +1,112 @@
+.button {
+    border-radius: $border-radius-sm;
+    height: calc(var(--index) *1.8);
+    width: calc(var(--index) *1.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white;
+    text-align: center;
+    font-size: calc(var(--index) *0.5);
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    &_tool {
+        border: 1px solid $color-secondary;
+
+        &:hover {
+            border: 1px solid $color-primery;
+        }
+    }
+
+    svg {
+        width: calc(var(--index) *1.2);
+        height: calc(var(--index) *1.2);
+    }
+
+    &_active {
+        border: 1px solid $color-primery;
+
+        path {
+            fill: $color-main-text;
+        }
+    }
+
+    &_type {
+        &_redo {
+            transform: scale(-1, 1);
+            border: 1px solid $color-text;
+
+            path {
+                fill: $color-text;
+            }
+        }
+
+        &_undo {
+            border: 1px solid $color-text;
+
+            path {
+                fill: $color-text;
+            }
+        }
+
+        &_save {
+            align-self: flex-end;
+
+            svg {
+                height: calc(var(--index) *1.2);
+                width: calc(var(--index) *1.2);
+            }
+        }
+    }
+}
+
+.button-text {
+    padding: calc(var(--index) *0.9) calc(var(--index) *1.1);
+    border-radius: $border-radius-sm;
+    background: linear-gradient(180deg, #50BD7E 0%, #1CAB58 100%);
+    border: none;
+    width: 100%;
+
+    &:hover {
+        background: linear-gradient(180deg, $color-blue 0%, #309EDC 100%);
+    }
+}
+
+.button-save {
+    opacity: 0.3;
+    cursor: auto;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_active {
+        opacity: 1;
+        cursor: pointer;
+    }   
+}
+
+.button-action {
+    cursor: auto;
+    border-color: $colorlight-gray;
+
+    path {
+        fill: $colorlight-gray;
+    }
+
+    &_active {
+        cursor: pointer;
+        border-color: $color-primery;
+
+        path {
+            fill: $color-primery;
+        }
+
+        &:hover,
+        &:active {
+            border-color: $color-primery;
+        }
+    }
+}

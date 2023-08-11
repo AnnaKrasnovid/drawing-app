@@ -1,0 +1,124 @@
+.tools {
+    background-color: $color-white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: $gap-lg;
+
+    &__box {
+        width: 100%;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: $gap-lg;
+        padding: calc(var(--index) *0.7);
+    }
+
+    &__header {
+        background: linear-gradient(180deg, #50BD7E 0%, #1CAB58 100%);
+        padding: calc(var(--index) *0.7);
+    }
+
+    &__text {
+        color: $color-white;
+        text-align: center;
+        font-size: calc(var(--index) *0.6);
+        ;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    &__content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $gap-md;
+        width: 100%;
+        padding-top: calc(var(--index) *1.5);
+    }
+
+    &__inputs {
+        display: flex;
+        flex-direction: column;
+        gap: $gap-md;
+
+    }
+
+    &__tools {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        gap: $gap-sm;
+
+    }
+
+    &__setting {
+        display: flex;
+        flex-direction: column;
+        gap: $gap-sm;
+        padding: calc(var(--index) *0.7);
+    }
+
+    &__wrapper {
+        display: flex;
+        gap: $gap-sm;
+    }
+}
+
+@media(max-width:767px) {
+    .tools {
+        gap: 0;
+        &__inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+        }
+
+        &__setting {
+            flex-direction: row;      
+        }
+
+        &__buttons {
+            padding-top: 0;
+        }
+
+        &__container {
+            gap: $gap-md;
+        }
+
+        &__header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}
+
+
+@media(max-width:500px) {
+    .tools {
+        &__inputs {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+@media(max-width:400px) {
+    .tools {
+        &__inputs {
+            grid-template-columns:  1fr;
+
+        }
+    }
+}

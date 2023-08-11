@@ -1,11 +1,11 @@
-import './index.css';
+import './styles/index.css';
 import 'normalize.css';
 
 import { hexToRgb, saveCanvas } from './utils/functions';
 import {
-    drawingSheet, buttonClear, buttonRedo, buttonUndo, buttonSave,optionsList, inputColor,
-    inputOpasity, inputWeight, textColor, textOpasity, textWeight, eraser, brash,
-    buttonsTools, canvas, context
+    drawingSheet, buttonClear, buttonRedo, buttonUndo, buttonSave, optionsList,
+    inputColor, inputOpasity, inputWeight, textColor, textOpasity, textWeight,
+    eraser, brash, buttonsTools, canvas, context
 } from './utils/constants';
 
 let painting = false;
@@ -21,6 +21,7 @@ let colorRGBA = `rgba(85,175,226, ${opasityLine})`;
 let step = 0;
 let bgCanvas = '#ffffff';
 
+
 textColor.textContent = colorLine;
 textOpasity.textContent = opasityLine + ' %';
 textWeight.textContent = weightLine + ' px';
@@ -29,7 +30,7 @@ inputColor.setAttribute("value", colorLine);
 inputOpasity.setAttribute("value", opasityLine);
 inputWeight.setAttribute("value", weightLine);
 
-const heightCanvas = () => drawingSheet.offsetHeight;
+const heightCanvas = () => window.innerHeight - drawingSheet.offsetTop * 2;
 const widthCanvas = () => drawingSheet.offsetWidth;
 
 function getBg() {
@@ -44,6 +45,8 @@ function getBg() {
 function changeSizeCanvas() {
     canvas.setAttribute('width', widthCanvas());
     canvas.setAttribute('height', heightCanvas());
+
+    renderLine()
 }
 
 function startPosition() {
@@ -71,6 +74,7 @@ function drawLine(x, y, weight, color) {
 }
 
 function draw(e) {
+
     if (!painting) {
         return;
     }
@@ -134,6 +138,7 @@ function renderLine() {
 }
 
 function goBackStep() {
+    console.log(lines.length, step)
     if (step === 0) {
         return;
     }
@@ -211,15 +216,15 @@ function saveImage() {
 
 
 function toggleOptions() {
-    if(tool==='eraser') {        
+    if (tool === 'eraser') {
         optionsList.forEach(item => {
-            if(!item.classList.contains('input-box_type_weight')) {
+            if (!item.classList.contains('input-box_type_weight')) {
                 addActiveClassButton(item, 'input-box_hide')
             }
         })
     } else {
         optionsList.forEach(item => {
-            if(!item.classList.contains('input-box_type_weight')) {
+            if (!item.classList.contains('input-box_type_weight')) {
                 removeActiveClassButton(item, 'input-box_hide')
             }
         })

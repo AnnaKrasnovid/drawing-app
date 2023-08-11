@@ -8,4 +8,14 @@ $color-border: #B0D3BF;
 $color-blue: #55AFE2;
 $color-light-blue: #a3d2ee;
 
+$color-white: #ffffff;
+$colorlight-gray: #dfdede;
+
+$border-radius-sm: calc(var(--index) * 0.3);
+$border-radius-md: calc(var(--index) *0.6);
+
+$gap-sm: calc(var(--index) * 0.5);
+$gap-md:var(--index);
+$gap-lg:calc(var(--index) * 1.5);
+
 $shadow: 5px 18px 40px 5px rgba(154, 154, 154, 0.20);

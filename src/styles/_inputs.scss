@@ -1,0 +1,79 @@
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-sm;
+    box-shadow: $shadow;
+    padding: calc(var(--index) *0.8);
+    visibility: visible;
+    opacity: 1;
+    transition: visibility .2s linear, opacity .2s linear;
+    border-radius: $border-radius-sm;
+
+    &_hide {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility .2s linear, opacity .2s linear;
+    }
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $gap-sm;
+    }
+
+    &__label {
+        font-size: calc(var(--index) * 0.6);
+        font-weight: 500;
+    }
+
+    &__option {
+        font-size: calc(var(--index) * 0.6);
+        font-weight: 500;
+    }
+
+    .input-range,
+    .input-color {
+        cursor: pointer;
+    }
+}
+
+.input-color {
+    width: 100%;
+    border: none;
+    height: calc(var(--index) * 1.4);
+    background-color: transparent;
+    padding: 0;
+}
+
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: $color-light-blue;
+    width: 100%;
+    height: calc(var(--index) * 0.5);
+    border-radius: $border-radius-sm;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: $color-blue;
+    opacity: 1;
+    width: calc(var(--index) * 1.1);
+    height: calc(var(--index) * 0.75);
+    border-radius: $border-radius-sm;
+
+    &:active {
+        background-color: #1993da;
+    }
+}
+
+@media(max-width:767px) {
+    .input-box {
+        padding: calc(var(--index)*.6);
+
+        &_type_color {
+            gap: 0;
+        }
+    }
+}
