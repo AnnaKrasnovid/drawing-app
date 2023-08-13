@@ -42,7 +42,7 @@
 }
 
 .app {
-    background-color:#e3f1e4;
+   
     height: 100vh;
     box-sizing: border-box;
     margin: 0 auto;
@@ -77,10 +77,22 @@
 
 .image {
     overflow: hidden;
+    position: relative;
 }
 
 .canvas {
     width: 100%;
+    // cursor: url('../img/arrow.svg'), auto;
+   
+     cursor: none;
+}
+
+.cursor{
+    border-radius: 50%;
+    border: 1px solid $color-main-text;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
 }
 
 @media(max-width:767px) {

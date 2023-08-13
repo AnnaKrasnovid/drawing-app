@@ -5,8 +5,11 @@ import { hexToRgb, saveCanvas } from './utils/functions';
 import {
     drawingSheet, buttonClear, buttonRedo, buttonUndo, buttonSave, optionsList,
     inputColor, inputOpasity, inputWeight, textColor, textOpasity, textWeight,
-    eraser, brash, buttonsTools, canvas, context
+    eraser, brash, buttonsTools, canvas, context,cursor
 } from './utils/constants';
+
+
+
 
 let painting = false;
 let lines = [];
@@ -29,7 +32,6 @@ canvas.style.background = bgCanvas;
 inputColor.setAttribute("value", colorLine);
 inputOpasity.setAttribute("value", opasityLine);
 inputWeight.setAttribute("value", weightLine);
-
 const heightCanvas = () => window.innerHeight - drawingSheet.offsetTop * 2;
 const widthCanvas = () => drawingSheet.offsetWidth;
 
@@ -78,7 +80,6 @@ function draw(e) {
     if (!painting) {
         return;
     }
-
     lines = lines.slice(0, step)
     mousePositionX = e.offsetX;
     mousePositionY = e.offsetY;
@@ -89,7 +90,17 @@ function draw(e) {
     // если при нажатой мыши курсов вышел за пределы canvas, то рисование сбрасываем
     if (mousePositionX + 10 > drawingSheet.offsetWidth || mousePositionX <= 0 || mousePositionY + 10 > drawingSheet.offsetHeight || mousePositionY < 10) {
         painting = false;
+      
     }
+}
+
+function changeBrash(e) {
+    cursor.setAttribute('style', `
+    top: ${e.offsetY - weightLine/2}px; 
+    left: ${e.offsetX - weightLine/2}px; 
+    height: ${weightLine}px;
+    width: ${weightLine}px;
+    `)
 }
 
 function clearCanvas() {
@@ -238,6 +249,7 @@ window.addEventListener('resize', () => changeSizeCanvas());
 canvas.addEventListener('mousedown', startPosition);
 canvas.addEventListener('mouseup', finishedPosition);
 canvas.addEventListener('mousemove', (e) => draw(e));
+canvas.addEventListener('mousemove', e=> changeBrash(e))
 buttonClear.addEventListener('click', startOver);
 inputColor.addEventListener('input', (e) => changeColor(e));
 inputOpasity.addEventListener('input', (e) => changeOpasity(e));

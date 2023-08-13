@@ -1,4 +1,5 @@
 export const drawingSheet = document.querySelector('.image');
+export const cursor = document.querySelector('.cursor');
 
 export const buttonClear = document.querySelector('.button-clear');
 export const buttonRedo = document.querySelector('.button_type_redo');
