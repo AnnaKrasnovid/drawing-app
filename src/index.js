@@ -149,7 +149,6 @@ function renderLine() {
 }
 
 function goBackStep() {
-    console.log(lines.length, step)
     if (step === 0) {
         return;
     }

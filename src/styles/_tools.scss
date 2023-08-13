@@ -18,14 +18,13 @@
 
     &__header {
         background: linear-gradient(180deg, #50BD7E 0%, #1CAB58 100%);
-        padding: calc(var(--index) *0.7);
+        padding: 16px;
     }
 
     &__text {
         color: $color-white;
         text-align: center;
-        font-size: calc(var(--index) *0.6);
-        ;
+        font-size:  16px;
         font-weight: 700;
         text-transform: uppercase;
     }
@@ -101,12 +100,16 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+            padding: 10px;
+        }
+        &__text {
+            font-size: 14px;
         }
     }
 }
 
 
-@media(max-width:500px) {
+@media(max-width:600px) {
     .tools {
         &__inputs {
             grid-template-columns: repeat(2, 1fr);

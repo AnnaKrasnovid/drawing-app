@@ -1,13 +1,13 @@
 .button {
     border-radius: $border-radius-sm;
-    height: calc(var(--index) *1.8);
-    width: calc(var(--index) *1.8);
+    height: 40px;
+    width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $color-white;
     text-align: center;
-    font-size: calc(var(--index) *0.5);
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     white-space: nowrap;
@@ -21,8 +21,8 @@
     }
 
     svg {
-        width: calc(var(--index) *1.2);
-        height: calc(var(--index) *1.2);
+        width: 25px;
+        height: 25px;
     }
 
     &_active {
@@ -63,7 +63,7 @@
 }
 
 .button-text {
-    padding: calc(var(--index) *0.9) calc(var(--index) *1.1);
+    padding: 10px 16px;
     border-radius: $border-radius-sm;
     background: linear-gradient(180deg, #50BD7E 0%, #1CAB58 100%);
     border: none;
@@ -85,7 +85,11 @@
     &_active {
         opacity: 1;
         cursor: pointer;
-    }   
+    } 
+    svg {
+        height: 25px;
+        width: 25px;
+    }  
 }
 
 .button-action {
@@ -109,4 +113,10 @@
             border-color: $color-primery;
         }
     }
+}
+
+@media(max-width:767px) {
+    .button {       
+        font-size: 12px;
+    }    
 }

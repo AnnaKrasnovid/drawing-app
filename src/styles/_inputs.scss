@@ -23,13 +23,14 @@
     }
 
     &__label {
-        font-size: calc(var(--index) * 0.6);
+        font-size: 14px;
         font-weight: 500;
     }
 
     &__option {
-        font-size: calc(var(--index) * 0.6);
+        font-size:  14px;
         font-weight: 500;
+        white-space: nowrap;
     }
 
     .input-range,
@@ -51,7 +52,7 @@ input[type=range] {
     -webkit-appearance: none;
     background-color: $color-light-blue;
     width: 100%;
-    height: calc(var(--index) * 0.5);
+    height: 8px;
     border-radius: $border-radius-sm;
 }
 
@@ -59,8 +60,8 @@ input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     background-color: $color-blue;
     opacity: 1;
-    width: calc(var(--index) * 1.1);
-    height: calc(var(--index) * 0.75);
+    width: 20px;
+    height: 14px;
     border-radius: $border-radius-sm;
 
     &:active {
