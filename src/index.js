@@ -34,7 +34,6 @@ inputWeight.setAttribute("value", weightLine);
 const widthCanvas = () => drawingSheet.offsetWidth;
 const heightCanvas = () => {
     if (window.innerWidth > 767) {
-        console.log(1)
         return window.innerHeight - drawingSheet.offsetTop * 2;
     } else {      
         return window.innerHeight - tools.offsetHeight - 60;       
@@ -53,7 +52,6 @@ function getBg() {
 function changeSizeCanvas() {
     canvas.setAttribute('width', widthCanvas());
     canvas.setAttribute('height', heightCanvas());
-    console.log(heightCanvas())
     supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints; // touch устройство?
     renderLine();
 }
