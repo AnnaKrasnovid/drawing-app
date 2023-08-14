@@ -1,10 +1,21 @@
-.tools {
+.scroll-box {
+overflow: auto;
+     
+    border-radius: $border-radius-md;
+    // height: 100%;
     background-color: $color-white;
+    // height: calc(100vh - 40px);
+    // height: 100vh;
+    height: calc(100vh - 40px);
+}
+.tools {
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: $gap-lg;
-
+     
+    height: 100%;
     &__box {
         width: 100%;
     }
@@ -42,14 +53,13 @@
         justify-content: center;
         gap: $gap-md;
         width: 100%;
-        padding-top: calc(var(--index) *1.5);
+        // padding-top: calc(var(--index) *1.5);
     }
 
     &__inputs {
         display: flex;
         flex-direction: column;
         gap: $gap-md;
-
     }
 
     &__tools {
@@ -78,13 +88,13 @@
     .tools {
         gap: 0;
         &__inputs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            // display: grid;
+            // grid-template-columns: repeat(3, 1fr);
 
         }
 
         &__setting {
-            flex-direction: row;      
+            // flex-direction: row;      
         }
 
         &__buttons {
@@ -112,7 +122,7 @@
 @media(max-width:600px) {
     .tools {
         &__inputs {
-            grid-template-columns: repeat(2, 1fr);
+            // grid-template-columns: repeat(2, 1fr);
         }
     }
 }
@@ -120,7 +130,7 @@
 @media(max-width:400px) {
     .tools {
         &__inputs {
-            grid-template-columns:  1fr;
+            // grid-template-columns:  1fr;
 
         }
     }

@@ -3,7 +3,10 @@ Pet projects
 #### [Посмотреть проект "Drawing application" в браузере](https://annakrasnovid.github.io/drawing-app/) 
 
 ## Описание:
-**Drawing application** - это приложение для рисования.
+**Drawing application** - это приложение для рисования, сделанное с помощью Canvas.
+
+## Цель проекта:
+Научиться работать с Canvas, изучить методы работы с ним.
 
 ## Функциональность:
 * выбор инструментов для рисования (ластик, кисть)
@@ -17,6 +20,7 @@ Pet projects
 ## Используемые технологии:
 * HTML
 * SCSS
+* Canvas
 * JavaScript
 * Webpack
 
@@ -32,10 +36,6 @@ Pet projects
 Клонируем репозиторий:  
 ```
 git clone https://github.com/AnnaKrasnovid/drawing-app.git
-```  
-Переходим в папку проекта:  
-```
-cd drawing-app
 ```  
 Устанавливаем пакет зависимостей и webpack:  
 ```

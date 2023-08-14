@@ -5,11 +5,11 @@ import { hexToRgb, saveCanvas } from './utils/functions';
 import {
     drawingSheet, buttonClear, buttonRedo, buttonUndo, buttonSave, optionsList,
     inputColor, inputOpasity, inputWeight, textColor, textOpasity, textWeight,
-    eraser, brash, buttonsTools, canvas, context,cursor
+    eraser, brash, buttonsTools, canvas, context, cursor
 } from './utils/constants';
 
-
-
+const tools = document.querySelector('.tools')
+let supportsTouch;
 
 let painting = false;
 let lines = [];
@@ -24,7 +24,6 @@ let colorRGBA = `rgba(85,175,226, ${opasityLine})`;
 let step = 0;
 let bgCanvas = '#ffffff';
 
-
 textColor.textContent = colorLine;
 textOpasity.textContent = opasityLine + ' %';
 textWeight.textContent = weightLine + ' px';
@@ -36,7 +35,7 @@ const heightCanvas = () => window.innerHeight - drawingSheet.offsetTop * 2;
 const widthCanvas = () => drawingSheet.offsetWidth;
 
 function getBg() {
-    // canvas.style.background = bgCanvas;
+    // для сохранения bg рисунка
     context.save();
     context.globalCompositeOperation = 'destination-over';
     context.fillStyle = bgCanvas;
@@ -47,8 +46,8 @@ function getBg() {
 function changeSizeCanvas() {
     canvas.setAttribute('width', widthCanvas());
     canvas.setAttribute('height', heightCanvas());
-
-    renderLine()
+    supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints; // touch устройство?
+    renderLine();
 }
 
 function startPosition() {
@@ -76,28 +75,35 @@ function drawLine(x, y, weight, color) {
 }
 
 function draw(e) {
-
     if (!painting) {
         return;
     }
-    lines = lines.slice(0, step)
-    mousePositionX = e.offsetX;
-    mousePositionY = e.offsetY;
+
+    if (supportsTouch) {
+        // для мобилки
+        mousePositionX = e.changedTouches[0].pageX - e.changedTouches[0].target.offsetParent.offsetLeft;
+        mousePositionY = e.changedTouches[0].pageY - e.changedTouches[0].target.offsetParent.offsetTop;
+    } else {
+        // для компа
+        mousePositionX = e.offsetX;
+        mousePositionY = e.offsetY;
+    }
+
+    lines = lines.slice(0, step);
     let colorTools = (tool === 'brash') ? colorRGBA : bgCanvas;
     drawLine(mousePositionX, mousePositionY, weightLine, colorTools);
     line.push({ x: mousePositionX, y: mousePositionY, weight: weightLine, color: colorTools });
 
     // если при нажатой мыши курсов вышел за пределы canvas, то рисование сбрасываем
-    if (mousePositionX + 10 > drawingSheet.offsetWidth || mousePositionX <= 0 || mousePositionY + 10 > drawingSheet.offsetHeight || mousePositionY < 10) {
+    if (mousePositionX + 10 > drawingSheet.offsetWidth || mousePositionX <= 10 || mousePositionY + 10 > drawingSheet.offsetHeight || mousePositionY < 10) {
         painting = false;
-      
     }
 }
 
 function changeBrash(e) {
     cursor.setAttribute('style', `
-    top: ${e.offsetY - weightLine/2}px; 
-    left: ${e.offsetX - weightLine/2}px; 
+    top: ${e.offsetY - weightLine / 2}px; 
+    left: ${e.offsetX - weightLine / 2}px; 
     height: ${weightLine}px;
     width: ${weightLine}px;
     `)
@@ -108,12 +114,12 @@ function clearCanvas() {
 }
 
 function startOver() {
-    context.clearRect(0, 0, widthCanvas(), heightCanvas());
+    clearCanvas();
     lines = [];
     line = [];
     toggleActiveClassButtonRedo();
     toggleActiveClassButtonUndo();
-    toggleActiveClassButtonSave()
+    toggleActiveClassButtonSave();
 }
 
 function changeHexToRgba(color) {
@@ -168,6 +174,26 @@ function goForwardStep() {
     toggleActiveClassButtonRedo();
     toggleActiveClassButtonUndo();
 }
+function changeTool(e, toolActive) {
+    tool = toolActive;
+    toggleActiveClassButtons(e);
+    toggleActiveClassButtonUndo();
+    toggleOptions();
+}
+
+function saveImage() {
+    if (lines.length !== 0) {
+        saveCanvas(canvas);
+    }
+}
+
+function addActiveClassButton(element, className) {
+    element.classList.add(className);
+}
+
+function removeActiveClassButton(element, className) {
+    element.classList.remove(className);
+}
 
 function toggleActiveClassButtons(e) {
     buttonsTools.forEach((i) => {
@@ -203,39 +229,17 @@ function toggleActiveClassButtonRedo() {
     }
 }
 
-function addActiveClassButton(element, className) {
-    element.classList.add(className);
-}
-
-function removeActiveClassButton(element, className) {
-    element.classList.remove(className);
-}
-
-function changeTool(e, toolActive) {
-    tool = toolActive;
-    toggleActiveClassButtons(e);
-    toggleActiveClassButtonUndo();
-    toggleOptions()
-}
-
-function saveImage() {
-    if (lines.length !== 0) {
-        saveCanvas(canvas);
-    }
-}
-
-
 function toggleOptions() {
     if (tool === 'eraser') {
         optionsList.forEach(item => {
             if (!item.classList.contains('input-box_type_weight')) {
-                addActiveClassButton(item, 'input-box_hide')
+                addActiveClassButton(item, 'input-box_hide');
             }
         })
     } else {
         optionsList.forEach(item => {
             if (!item.classList.contains('input-box_type_weight')) {
-                removeActiveClassButton(item, 'input-box_hide')
+                removeActiveClassButton(item, 'input-box_hide');
             }
         })
     }
@@ -245,18 +249,26 @@ changeSizeCanvas();
 getBg();
 
 window.addEventListener('resize', () => changeSizeCanvas());
-canvas.addEventListener('mousedown', startPosition);
-canvas.addEventListener('mouseup', finishedPosition);
-canvas.addEventListener('mousemove', (e) => draw(e));
-canvas.addEventListener('mousemove', e=> changeBrash(e))
-buttonClear.addEventListener('click', startOver);
+
 inputColor.addEventListener('input', (e) => changeColor(e));
 inputOpasity.addEventListener('input', (e) => changeOpasity(e));
 inputWeight.addEventListener('input', (e) => changeWeight(e));
+
+buttonClear.addEventListener('click', startOver);
 buttonRedo.addEventListener('click', goForwardStep);
 buttonUndo.addEventListener('click', goBackStep);
 buttonSave.addEventListener('click', saveImage);
+
 eraser.addEventListener('click', (e) => changeTool(e, 'eraser'));
 brash.addEventListener('click', (e) => changeTool(e, 'brash'));
 
-
+if (supportsTouch) {
+    canvas.addEventListener('touchstart', startPosition);
+    canvas.addEventListener('touchend', finishedPosition);
+    canvas.addEventListener('touchmove', (e) => draw(e));
+} else {
+    canvas.addEventListener('mousedown', startPosition);
+    canvas.addEventListener('mouseup', finishedPosition);
+    canvas.addEventListener('mousemove', (e) => draw(e));
+    canvas.addEventListener('mousemove', e => changeBrash(e));
+}
