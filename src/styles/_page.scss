@@ -86,8 +86,6 @@
 
 .canvas {
     width: 100%;
-    // cursor: url('../img/arrow.svg'), auto;
-   
      cursor: none;
 }
 
@@ -104,8 +102,11 @@
 
 @media(max-width:767px) {
     .app-draw {
-    //    grid-template-columns: 1fr;
-    //    grid-template-rows: min-content 1fr;
-    //    gap: $gap-md;
+       grid-template-columns: 1fr;
+       grid-template-rows:min-content 1fr;
+       gap: $gap-md;
+    }
+    .image {
+                height:max-content;
     }
 }

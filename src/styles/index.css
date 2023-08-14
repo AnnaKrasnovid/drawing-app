@@ -54,7 +54,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #e3f1e4;
-  min-width: 768px;
   overflow: auto;
 }
 
@@ -145,6 +144,16 @@ body {
   display: none;
 }
 
+@media (max-width: 767px) {
+  .app-draw {
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content 1fr;
+    gap: var(--index);
+  }
+  .image {
+    height: max-content;
+  }
+}
 @font-face {
   font-family: "Montserrat";
   src: url("../fonts/Montserrat-Reg.woff2") format("woff2");
@@ -333,8 +342,18 @@ body {
 }
 
 @media (max-width: 767px) {
+  .scroll-box {
+    height: fit-content;
+  }
   .tools {
     gap: 0;
+  }
+  .tools__inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .tools__setting {
+    flex-direction: row;
   }
   .tools__buttons {
     padding-top: 0;
@@ -351,6 +370,16 @@ body {
   }
   .tools__text {
     font-size: 14px;
+  }
+}
+@media (max-width: 600px) {
+  .tools__inputs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 400px) {
+  .tools__inputs {
+    grid-template-columns: 1fr;
   }
 }
 .input-box {

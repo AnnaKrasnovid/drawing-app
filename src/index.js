@@ -3,12 +3,11 @@ import 'normalize.css';
 
 import { hexToRgb, saveCanvas } from './utils/functions';
 import {
-    drawingSheet, buttonClear, buttonRedo, buttonUndo, buttonSave, optionsList,
+    drawingSheet, tools, buttonClear, buttonRedo, buttonUndo, buttonSave, optionsList,
     inputColor, inputOpasity, inputWeight, textColor, textOpasity, textWeight,
     eraser, brash, buttonsTools, canvas, context, cursor
 } from './utils/constants';
 
-const tools = document.querySelector('.tools')
 let supportsTouch;
 
 let painting = false;
@@ -31,8 +30,16 @@ canvas.style.background = bgCanvas;
 inputColor.setAttribute("value", colorLine);
 inputOpasity.setAttribute("value", opasityLine);
 inputWeight.setAttribute("value", weightLine);
-const heightCanvas = () => window.innerHeight - drawingSheet.offsetTop * 2;
+
 const widthCanvas = () => drawingSheet.offsetWidth;
+const heightCanvas = () => {
+    if (window.innerWidth > 767) {
+        console.log(1)
+        return window.innerHeight - drawingSheet.offsetTop * 2;
+    } else {      
+        return window.innerHeight - tools.offsetHeight - 60;       
+    }
+}
 
 function getBg() {
     // для сохранения bg рисунка
@@ -46,6 +53,7 @@ function getBg() {
 function changeSizeCanvas() {
     canvas.setAttribute('width', widthCanvas());
     canvas.setAttribute('height', heightCanvas());
+    console.log(heightCanvas())
     supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints; // touch устройство?
     renderLine();
 }
